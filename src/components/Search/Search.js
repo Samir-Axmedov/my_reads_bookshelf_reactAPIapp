@@ -8,8 +8,10 @@ class Search extends Component {
   state = {
       books: [],
       results: [],
-      query: ''
+      searchTerm: ''
   }
+
+  handleSearchTerm = (event) => this.setState({searchTerm: event.target.value})
 
   render() {
     return (
@@ -25,12 +27,17 @@ class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input type="text" placeholder="Search by title or author"/>
+            <input onChange={this.handleSearchTerm}
+                  value={this.state.searchTerm}
+                  type="text"
+                  placeholder="Search by title or author"
+                  />
 
           </div>
         </div>
         <div className="search-books-results">
-          <ol className="books-grid"></ol>
+          <ol className="books-grid">
+          </ol>
         </div>
       </div>
     );
@@ -38,7 +45,7 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-
+  handleSearchTerm: PropTypes.func.isRequired,
 }
 
 export default Search;
