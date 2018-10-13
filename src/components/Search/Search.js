@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import * as BooksAPI from '../../BooksAPI';
 import './Search.css';
 import Book from '../Book/Book';
 import { Link } from 'react-router-dom';
@@ -11,7 +12,22 @@ class Search extends Component {
       searchTerm: ''
   }
 
-  handleSearchTerm = (event) => this.setState({searchTerm: event.target.value})
+  handleSearchTerm = (event) => {
+    this.setState(
+      {searchTerm: event.target.value},
+      this.searchBooks
+    )
+  }
+
+  searchBooks = () => {
+    BooksAPI.search(this.state.searchTerm).then(searchResults => {
+      this.setState(
+        {results: searchResults},
+        console.log(this.state.results)
+      )
+    });
+
+  }
 
   render() {
     return (
@@ -37,6 +53,11 @@ class Search extends Component {
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
+            {
+              this.state.results && this.state.results.map(book => {
+                return <Book book={book} key={book.id} />
+              })
+            }
           </ol>
         </div>
       </div>
@@ -45,7 +66,8 @@ class Search extends Component {
 }
 
 Search.propTypes = {
-  handleSearchTerm: PropTypes.func.isRequired,
+  handleSearchTerm: PropTypes.func,
+  searchBooks: PropTypes.func,
 }
 
 export default Search;

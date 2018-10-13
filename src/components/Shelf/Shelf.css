@@ -1,5 +1,19 @@
 /* main page */
 
+.bookshelf-books {
+  text-align: center;
+}
+
+.books-grid {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .bookshelf {
   padding: 0 10px 20px;
 }
