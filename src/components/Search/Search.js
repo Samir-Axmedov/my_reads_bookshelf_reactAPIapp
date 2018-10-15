@@ -20,13 +20,17 @@ class Search extends Component {
   }
 
   searchBooks = () => {
+    if (this.state.searchTerm === '' || this.state.searchTerm === 'undefined') {
+      return this.setState({ results: [] });
+    }
     BooksAPI.search(this.state.searchTerm).then(searchResults => {
-      this.setState(
-        {results: searchResults},
-        console.log(this.state.results)
-      )
+      console.log(this.state.searchTerm);
+      console.log(searchResults);
+      searchResults.error ?
+      this.setState({ results: [] })
+      :
+      this.setState({ results: searchResults })
     });
-
   }
 
   render() {
@@ -44,10 +48,10 @@ class Search extends Component {
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <input onChange={this.handleSearchTerm}
-                  value={this.state.searchTerm}
-                  type="text"
-                  placeholder="Search by title or author"
-                  />
+              value={this.state.searchTerm}
+              type="text"
+              placeholder="Search by title or author"
+            />
 
           </div>
         </div>
