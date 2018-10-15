@@ -10,8 +10,8 @@ class Book extends Component {
             <div className="book">
               <div className="book-top">
                 <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${!this.props.book.imageLinks
-                    ? 'No image'
-                    : (this.props.book.imageLinks.smallThumbnail || this.props.book.imageLinks.thumbnail)})`}}>
+                    ? ''
+                    : (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail)})`}}>
                 </div>
 
                 <ShelfChanger />
