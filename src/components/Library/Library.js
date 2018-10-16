@@ -11,7 +11,8 @@ class Library extends Component {
   constructor(props){
     super(props);
     this.state = {
-      books: []
+      books: [],
+      shelf: ""
     }
   }
 
@@ -21,22 +22,27 @@ class Library extends Component {
     })
   }
 
+  // setShelf = (thisShelf) => this.setState({shelf: thisShelf})
+
   render() {
     return (
       <div className="list-books">
         <Header />
-          <div className="list-books-content">
-              <Shelf
-                books={this.state.books.filter(book => book.shelf === "currentlyReading")}
-                name={"Currently Reading"}
-                />
-              <Shelf
-                books={this.state.books.filter(book => book.shelf === "wantToRead")}
-                name={"Want To Read"}
-                />
-              <Shelf
-                books={this.state.books.filter(book => book.shelf === "read")}
-                name={"Read"}
+        <div className="list-books-content">
+          <Shelf
+            books={this.state.books.filter(book => book.shelf === "currentlyReading")}
+            name={"Currently Reading"}
+            
+          />
+          <Shelf
+            books={this.state.books.filter(book => book.shelf === "wantToRead")}
+            name={"Want To Read"}
+            
+          />
+          <Shelf
+            books={this.state.books.filter(book => book.shelf === "read")}
+            name={"Read"}
+            
                 />
           </div>
         <SearchIcon />
