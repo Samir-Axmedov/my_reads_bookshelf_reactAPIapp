@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './ShelfChanger.css';
 
 class ShelfChanger extends Component {
-  state={
+  state = {
     shelf: '',
     bookID: ''
   }
@@ -12,8 +12,8 @@ class ShelfChanger extends Component {
     this.setState({
       shelf: event.target.value,
       bookID: event.target.id
-    })
-
+      }, () => this.props.getBook(this.state.bookID,this.state.shelf)
+    );
   }
 
   render() {

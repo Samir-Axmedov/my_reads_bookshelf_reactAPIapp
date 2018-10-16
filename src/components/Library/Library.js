@@ -8,13 +8,10 @@ import SearchIcon from '../SearchIcon/SearchIcon';
 
 
 class Library extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
+    state = {
       books: [],
       shelf: ""
     }
-  }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
@@ -22,9 +19,17 @@ class Library extends Component {
     })
   }
 
-  // setShelf = (thisShelf) => this.setState({shelf: thisShelf})
+  getBook = (bookIDFromMenu, shelfName) => {
+    this.setState({shelf: shelfName}, () => {
+      BooksAPI.get(bookIDFromMenu).then(book => {
+        BooksAPI.update(book, this.state.shelf);
+        console.log(book, shelfName);
+      });
+    });
+  }
 
   render() {
+    console.log(this.state.books);
     return (
       <div className="list-books">
         <Header />
@@ -32,18 +37,18 @@ class Library extends Component {
           <Shelf
             books={this.state.books.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
-            
+            getBook={this.getBook}
           />
           <Shelf
             books={this.state.books.filter(book => book.shelf === "wantToRead")}
             name={"Want To Read"}
-            
+            getBook={this.getBook}
           />
           <Shelf
             books={this.state.books.filter(book => book.shelf === "read")}
             name={"Read"}
-            
-                />
+            getBook={this.getBook}
+          />
           </div>
         <SearchIcon />
       </div>

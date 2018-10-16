@@ -8,14 +8,29 @@ import { Link } from 'react-router-dom';
 class Search extends Component {
   state = {
       books: [],
+      shelf: '',
       results: [],
       searchTerm: ''
   }
 
+  componentDidMount() {
+    BooksAPI.getAll().then(books => {
+      this.setState({books: books});
+    })
+  }
+
+  getBook = (bookIDFromMenu, shelfName) => {
+    this.setState({shelf: shelfName}, () => {
+      BooksAPI.get(bookIDFromMenu).then(book => {
+        BooksAPI.update(book, this.state.shelf);
+        console.log(book, shelfName);
+      });
+    });
+  }
+
   handleSearchTerm = (event) => {
-    this.setState(
-      {searchTerm: event.target.value},
-      this.searchBooks
+    this.setState({
+      searchTerm: event.target.value }, this.searchBooks
     )
   }
 
@@ -34,6 +49,7 @@ class Search extends Component {
   }
 
   render() {
+    console.log(this.state.books);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -48,18 +64,22 @@ class Search extends Component {
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <input onChange={this.handleSearchTerm}
-              value={this.state.searchTerm}
-              type="text"
-              placeholder="Search by title or author"
-            />
+                   value={this.state.searchTerm}
+                   type="text"
+                   placeholder="Search by title or author"
+                   />
 
           </div>
         </div>
+        
         <div className="search-books-results">
           <ol className="books-grid">
             {
               this.state.results && this.state.results.map(book => {
-                return <Book book={book} key={book.id} />
+                return <Book book={book}
+                             key={book.id}
+                             getBook={this.getBook}
+                             />
               })
             }
           </ol>

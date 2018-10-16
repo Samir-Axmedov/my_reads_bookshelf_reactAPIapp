@@ -16,7 +16,7 @@ class Shelf extends Component {
               <h2 className="bookshelf-title">{this.props.name}</h2>
               {
                 this.props.books.map(book => {
-                  return <Book book={book} key={book.id}  />
+                  return <Book book={book} key={book.id}  getBook={this.props.getBook} />
                 })
               }
             </div>
