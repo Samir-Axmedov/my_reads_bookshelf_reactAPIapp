@@ -4,14 +4,6 @@ import './Book.css';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 
 class Book extends Component {
-  state= {
-    bookID: ''
-  }
-
-  setBookShelf = (id) => {
-    this.setState({bookID: id});
-    this.props.newShelf()
-  }
 
   render() {
     return (
@@ -28,7 +20,10 @@ class Book extends Component {
                   }}>
                 </div>
 
-                <ShelfChanger currentShelf={this.props.book.shelf} bookMenuID={this.props.book.id} />
+                <ShelfChanger currentShelf={this.props.book.shelf}
+                              bookMenuID={this.props.book.id}
+                              getBook={this.props.getBook}
+                              />
 
               </div>
               <div className="book-title">{this.props.book.title}</div>
