@@ -7,18 +7,18 @@ import Book from '../Book/Book';
 class Shelf extends Component {
 
   render() {
+    console.log(this.props.books);
     return (
       <div className="bookshelf-books">
         <ol className="books-grid">
           <div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">{this.props.name}</h2>
-                {
-                  this.props.books.map(book => {
-                  return <Book book={book} key={book.id} />
-                  })
-                }
-                {console.log(this.props.books)}
+              {
+                this.props.books.map(book => {
+                  return <Book book={book} key={book.id}  />
+                })
+              }
             </div>
           </div>
         </ol>
