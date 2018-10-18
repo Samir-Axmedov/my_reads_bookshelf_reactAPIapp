@@ -8,24 +8,43 @@ import SearchIcon from '../SearchIcon/SearchIcon';
 
 
 class Library extends Component {
-    state = {
-      books: [],
-      shelf: ""
-    }
+  state = {
+    myBookShelves: [],
+  }
 
   componentDidMount() {
     BooksAPI.getAll().then(books => {
-      this.setState({books: books});
+      this.setState({myBookShelves: books});
     })
   }
 
   getBook = (bookIDFromMenu, shelfName) => {
-    this.setState({shelf: shelfName}, () => {
-      BooksAPI.get(bookIDFromMenu).then(book => {
-        BooksAPI.update(book, this.state.shelf);
-        console.log(book, shelfName);
+    let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
+    BooksAPI.update(bookToUpdate[0], shelfName).
+    then(resp => {
+      BooksAPI.getAll().then(books => {
+        this.setState({myBookShelves: books});
       });
     });
+  }
+
+
+  // getBook = (bookIDFromMenu, shelfName) => {
+  //   let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
+  //   BooksAPI.update(bookToUpdate[0], shelfName).
+  //   then(resp => {
+  //     bookToUpdate[0].shelf = shelfName;
+  //     this.setState(state => ({
+  //       myBookShelves: state.myBookShelves.filter(book => book.id !== bookToUpdate[0].id).concat([bookToUpdate[0]])
+  //     }));
+  //   });
+  // }
+
+  updatePage = () => {
+    BooksAPI.getAll().then(books => {
+      console.log("updatePage called");
+      this.setState({myBookShelves: books});
+    })
   }
 
   render() {
@@ -35,17 +54,17 @@ class Library extends Component {
         <Header />
         <div className="list-books-content">
           <Shelf
-            books={this.state.books.filter(book => book.shelf === "currentlyReading")}
+            books={this.state.myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
             getBook={this.getBook}
           />
           <Shelf
-            books={this.state.books.filter(book => book.shelf === "wantToRead")}
+            books={this.state.myBookShelves.filter(book => book.shelf === "wantToRead")}
             name={"Want To Read"}
             getBook={this.getBook}
           />
           <Shelf
-            books={this.state.books.filter(book => book.shelf === "read")}
+            books={this.state.myBookShelves.filter(book => book.shelf === "read")}
             name={"Read"}
             getBook={this.getBook}
           />
@@ -57,7 +76,7 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-
+  getBook: PropTypes.func
 }
 
 export default Library;
