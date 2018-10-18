@@ -9,11 +9,7 @@ class ShelfChanger extends Component {
   }
 
   handleShelfSelect = (event) => {
-    this.setState({
-      shelf: event.target.value,
-      bookID: event.target.id
-      }, () => this.props.getBook(this.state.bookID,this.state.shelf)
-    );
+    this.props.getBook(event.target.id, event.target.value)
   }
 
   render() {
