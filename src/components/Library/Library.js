@@ -20,8 +20,11 @@ class Library extends Component {
 
   getBook = (bookIDFromMenu, shelfName) => {
     let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
+    console.log(bookToUpdate[0]);
     BooksAPI.update(bookToUpdate[0], shelfName).
     then(resp => {
+      console.log(resp);
+      // another idea: concat bookToUpdate[0] to this.state.myBookShelves
       BooksAPI.getAll().then(books => {
         this.setState({myBookShelves: books});
       });
