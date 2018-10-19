@@ -15,7 +15,7 @@ class ShelfChanger extends Component {
   render() {
     return (
       <div className="book-shelf-changer">
-        <select value={this.props.currentShelf}
+        <select value={this.props.currentShelf || 'none'} 
                 id={this.props.bookMenuID}
                 onChange={this.handleShelfSelect}>
           <option value="move" disabled>Move to...</option>

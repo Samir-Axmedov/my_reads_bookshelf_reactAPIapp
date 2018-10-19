@@ -20,8 +20,14 @@ class Search extends Component {
 
   getBook = (bookIDFromMenu, shelfName) => {
     let bookToUpdate = this.state.results.filter(book => book.id === bookIDFromMenu);
-    BooksAPI.update(bookToUpdate[0], shelfName);
-
+    console.log(bookToUpdate[0], shelfName);
+    BooksAPI.update(bookToUpdate[0], shelfName)
+    .then(resp => {
+      console.log(resp);
+      BooksAPI.getAll().then(books => {
+        this.setState({myBookShelves: books},this.searchBooks); // Call Search again to update selector status
+      });
+    });
   }
 
   handleSearchTerm = (event) => {
@@ -37,16 +43,24 @@ class Search extends Component {
     }
     BooksAPI.search(this.state.searchTerm).then(searchResults => {
       console.log(this.state.searchTerm);
-      console.log(searchResults);
-      searchResults.error ?
-      this.setState({ results: [] })
-      :
-      this.setState({ results: searchResults })
+      if (searchResults.error) {
+        this.setState({ results: [] });
+      } else {
+        searchResults.map(searchResult => {
+          searchResult["shelf"] = 'none';
+          this.state.myBookShelves.forEach(mybook => {
+            if (searchResult.id === mybook.id) {
+              searchResult["shelf"] = mybook.shelf;
+            }
+        })
+      });
+        this.setState({ results: searchResults }, this.componentDidMount())
+      }
     });
   }
 
   render() {
-    console.log(this.state.books);
+    console.log(this.state.myBookShelves);
     return (
       <div className="search-books">
         <div className="search-books-bar">
@@ -73,12 +87,6 @@ class Search extends Component {
           <ol className="books-grid">
             {
               this.state.results && this.state.results.map(book => {
-                this.state.myBookShelves.forEach(mybook => {
-                  book.id === mybook.id ?
-                    book["shelf"] = mybook["shelf"]
-                  :
-                  book["shelf"] = 'none';
-                })
                 return <Book book={book}
                              key={book.id}
                              getBook={this.getBook}
