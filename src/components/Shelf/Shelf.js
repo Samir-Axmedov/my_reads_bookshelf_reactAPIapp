@@ -18,7 +18,7 @@ class Shelf extends Component {
                 this.props.books.map(book => {
                   return <Book book={book}
                                key={book.id}
-                               getBook={this.props.getBook}
+                               updateBook={this.props.updateBook}
                                />
                 })
               }
@@ -31,7 +31,9 @@ class Shelf extends Component {
 }
 
 Shelf.propTypes = {
-  currentReads: PropTypes.array
+  currentReads: PropTypes.array,
+  name: PropTypes.string,
+  updateBook: PropTypes.func
 }
 
 export default Shelf;

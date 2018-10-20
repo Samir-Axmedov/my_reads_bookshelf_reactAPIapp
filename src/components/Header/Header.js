@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './Header.css';
 
 class Header extends Component {
   render() {
     return (
       <div className="list-books-title">
-        <h1>MyReads</h1>
+        <h1>{this.props.bookShelf}</h1>
       </div>
     );
   }

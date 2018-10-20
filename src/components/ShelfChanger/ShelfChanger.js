@@ -3,19 +3,15 @@ import PropTypes from 'prop-types';
 import './ShelfChanger.css';
 
 class ShelfChanger extends Component {
-  state = {
-    shelf: '',
-    bookID: ''
-  }
 
   handleShelfSelect = (event) => {
-    this.props.getBook(event.target.id, event.target.value)
+    this.props.updateBook(event.target.id, event.target.value)
   }
 
   render() {
     return (
       <div className="book-shelf-changer">
-        <select value={this.props.currentShelf || 'none'} 
+        <select value={this.props.currentShelf || "none"}
                 id={this.props.bookMenuID}
                 onChange={this.handleShelfSelect}>
           <option value="move" disabled>Move to...</option>
@@ -31,7 +27,9 @@ class ShelfChanger extends Component {
 
 
 ShelfChanger.propTypes = {
-
+  currentShelf: PropTypes.string,
+  bookMenuID: PropTypes.string,
+  handleShelfSelect: PropTypes.func
 }
 
 export default ShelfChanger;

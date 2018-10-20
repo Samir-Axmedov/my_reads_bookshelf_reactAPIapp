@@ -12,21 +12,37 @@ class Search extends Component {
       searchTerm: ''
   }
 
-  componentDidMount() {
+  getMyBooks = () => {
     BooksAPI.getAll().then(books => {
       this.setState({myBookShelves: books});
-    })
+    });
   }
 
-  getBook = (bookIDFromMenu, shelfName) => {
+  componentDidMount() {
+    this.getMyBooks();
+  }
+
+  updateBook = (bookIDFromMenu, shelfName) => {
     let bookToUpdate = this.state.results.filter(book => book.id === bookIDFromMenu);
     console.log(bookToUpdate[0], shelfName);
     BooksAPI.update(bookToUpdate[0], shelfName)
     .then(resp => {
       console.log(resp);
-      BooksAPI.getAll().then(books => {
-        this.setState({myBookShelves: books},this.searchBooks); // Call Search again to update selector status
-      });
+      this.getMyBooks();
+      this.searchBooks(); // Call Search again to update selector status
+
+    });
+  }
+
+  updateBookMenu = (results) => {
+    results.map(searchResult => {
+      // set shelf status for 'results' based on state of myBookShelves
+      this.state.myBookShelves.forEach(mybook => {
+        if (searchResult.id === mybook.id) {
+          searchResult["shelf"] = mybook.shelf;
+          // books not in myBookShelves are set to "none" in ShelfChanger component
+        }
+      })
     });
   }
 
@@ -46,14 +62,7 @@ class Search extends Component {
       if (searchResults.error) {
         this.setState({ results: [] });
       } else {
-        searchResults.map(searchResult => {
-          searchResult["shelf"] = 'none';
-          this.state.myBookShelves.forEach(mybook => {
-            if (searchResult.id === mybook.id) {
-              searchResult["shelf"] = mybook.shelf;
-            }
-        })
-      });
+        this.updateBookMenu(searchResults);
         this.setState({ results: searchResults }, this.componentDidMount())
       }
     });
@@ -89,7 +98,7 @@ class Search extends Component {
               this.state.results && this.state.results.map(book => {
                 return <Book book={book}
                              key={book.id}
-                             getBook={this.getBook}
+                             updateBook={this.updateBook}
                              />
               })
             }
@@ -103,6 +112,7 @@ class Search extends Component {
 Search.propTypes = {
   handleSearchTerm: PropTypes.func,
   searchBooks: PropTypes.func,
+  updateBook: PropTypes.func,
 }
 
 export default Search;

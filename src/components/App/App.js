@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Route } from 'react-router-dom';
 // import logo from './logo.svg';
 import './App.css';
 import Search from '../Search/Search';
 import Library from '../Library/Library';
-import SearchIcon from '../SearchIcon/SearchIcon';
-import {get, getAll, update, search} from '../../BooksAPI';
+
 
 class BooksApp extends Component {
   render() {
@@ -17,10 +15,6 @@ class BooksApp extends Component {
       </div>
     )
   }
-}
-
-BooksApp.propTypes = {
-
 }
 
 export default BooksApp

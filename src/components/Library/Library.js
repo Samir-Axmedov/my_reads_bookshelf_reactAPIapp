@@ -12,27 +12,29 @@ class Library extends Component {
     myBookShelves: [],
   }
 
-  componentDidMount() {
+  getMyBooks = () => {
     BooksAPI.getAll().then(books => {
       this.setState({myBookShelves: books});
-    })
+    });
   }
 
-  getBook = (bookIDFromMenu, shelfName) => {
+  componentDidMount() {
+    this.getMyBooks();
+  }
+
+  updateBook = (bookIDFromMenu, shelfName) => {
     let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
     console.log(bookToUpdate[0]);
-    BooksAPI.update(bookToUpdate[0], shelfName).
-    then(resp => {
+    BooksAPI.update(bookToUpdate[0], shelfName)
+    .then(resp => {
       console.log(resp);
       // another idea: concat bookToUpdate[0] to this.state.myBookShelves
-      BooksAPI.getAll().then(books => {
-        this.setState({myBookShelves: books});
-      });
+      this.getMyBooks();
     });
   }
 
 
-  // getBook = (bookIDFromMenu, shelfName) => {
+  // updateBook = (bookIDFromMenu, shelfName) => {
   //   let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
   //   BooksAPI.update(bookToUpdate[0], shelfName).
   //   then(resp => {
@@ -51,25 +53,24 @@ class Library extends Component {
   }
 
   render() {
-    console.log(this.state.books);
     return (
       <div className="list-books">
-        <Header />
+        <Header bookShelf={"My BookShelf"} />
         <div className="list-books-content">
           <Shelf
             books={this.state.myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
-            getBook={this.getBook}
+            updateBook={this.updateBook}
           />
           <Shelf
             books={this.state.myBookShelves.filter(book => book.shelf === "wantToRead")}
             name={"Want To Read"}
-            getBook={this.getBook}
+            updateBook={this.updateBook}
           />
           <Shelf
             books={this.state.myBookShelves.filter(book => book.shelf === "read")}
             name={"Read"}
-            getBook={this.getBook}
+            updateBook={this.updateBook}
           />
           </div>
         <SearchIcon />
@@ -79,7 +80,7 @@ class Library extends Component {
 }
 
 Library.propTypes = {
-  getBook: PropTypes.func
+  updateBook: PropTypes.func
 }
 
 export default Library;

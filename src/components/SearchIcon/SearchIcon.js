@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import './SearchIcon.css';
 import { Link } from 'react-router-dom';
 
@@ -13,10 +12,6 @@ class SearchIcon extends Component {
       </div>
     );
   }
-}
-
-SearchIcon.propTypes = {
-
 }
 
 export default SearchIcon;
