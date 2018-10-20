@@ -14,15 +14,17 @@ class Book extends Component {
                   style={{
                     width: 128,
                     height: 193,
-                    backgroundImage: `url(${!this.props.book.imageLinks
-                      ? ''
-                      : (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail)})`
+                    backgroundImage: `url(${
+                      !this.props.book.imageLinks ? ''
+                      :
+                      (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail)
+                    })`
                   }}>
                 </div>
 
                 <ShelfChanger currentShelf={this.props.book.shelf}
                               bookMenuID={this.props.book.id}
-                              getBook={this.props.getBook}
+                              updateBook={this.props.updateBook}
                               />
 
               </div>
@@ -36,7 +38,7 @@ class Book extends Component {
 
 Book.propTypes = {
   book: PropTypes.object,
-
+  updateBook: PropTypes.func,
 }
 
 export default Book
