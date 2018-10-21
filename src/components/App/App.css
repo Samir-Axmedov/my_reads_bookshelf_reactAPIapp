@@ -1,15 +1,14 @@
 /* Book App */
 html, body, .root {
   height: 100%;
+  font-family: 'Gentium Book Basic', serif;
 }
 body {
   line-height: 1.5;
 }
 body, .app {
-  background: white;
+  background: #938463;
 }
-
-
 
 
 
