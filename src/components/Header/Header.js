@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import './Header.css';
 
-class Header extends Component {
-  render() {
+export const Header = (props) => {
     return (
       <div className="list-books-title">
-        <h1>{this.props.bookShelf}</h1>
+        <h1>{props.bookShelf}</h1>
       </div>
     );
-  }
 }
-
-export default Header;
