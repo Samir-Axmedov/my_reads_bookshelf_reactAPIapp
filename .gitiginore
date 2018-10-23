@@ -29,3 +29,5 @@ yarn-error.log*
 .jshintrc
 
 .DS_store
+
+.key

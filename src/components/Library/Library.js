@@ -33,18 +33,6 @@ class Library extends Component {
     });
   }
 
-
-  // updateBook = (bookIDFromMenu, shelfName) => {
-  //   let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
-  //   BooksAPI.update(bookToUpdate[0], shelfName).
-  //   then(resp => {
-  //     bookToUpdate[0].shelf = shelfName;
-  //     this.setState(state => ({
-  //       myBookShelves: state.myBookShelves.filter(book => book.id !== bookToUpdate[0].id).concat([bookToUpdate[0]])
-  //     }));
-  //   });
-  // }
-
   updatePage = () => {
     BooksAPI.getAll().then(books => {
       console.log("updatePage called");
@@ -56,7 +44,7 @@ class Library extends Component {
     return (
       <div className="list-books">
         <Header bookShelf={"My BookShelf"} />
-        <div className="list-books-content">
+        <main className="list-books-content">
           <Shelf
             books={this.state.myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
@@ -72,7 +60,7 @@ class Library extends Component {
             name={"Read"}
             updateBook={this.updateBook}
           />
-          </div>
+          </main>
         <SearchIcon />
       </div>
     );

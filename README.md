@@ -71,7 +71,7 @@ Tutorials, articles and docs used while building this app.
 ![tablet view](./screenshots/tablet.png)
 
 
-##### Desk Top
+##### Desktop
 ![desktop view](./screenshots/desktop.png)
 
 

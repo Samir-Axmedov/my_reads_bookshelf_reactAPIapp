@@ -7,9 +7,9 @@ class SearchIcon extends Component {
 
   render() {
     return (
-      <div className="open-search">
+      <section className="open-search">
         <Link to="/search">Add a book</Link>
-      </div>
+      </section>
     );
   }
 }

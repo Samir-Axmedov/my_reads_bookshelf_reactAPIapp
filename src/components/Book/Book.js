@@ -8,7 +8,7 @@ class Book extends Component {
   render() {
     return (
           <li>
-            <div className="book">
+            <section className="book">
               <div className="book-top">
                 <div className="book-cover"
                   style={{
@@ -30,7 +30,7 @@ class Book extends Component {
               </div>
               <div className="book-title">{this.props.book.title}</div>
               <div className="book-authors">{this.props.book.authors}</div>
-            </div>
+            </section>
           </li>
     );
   }

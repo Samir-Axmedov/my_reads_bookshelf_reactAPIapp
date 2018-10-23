@@ -9,10 +9,10 @@ class Shelf extends Component {
   render() {
     console.log(this.props.books);
     return (
-      <div className="bookshelf-books">
+      <section className="bookshelf-books">
         <ol className="books-grid">
           <div>
-            <div className="bookshelf">
+            <section className="bookshelf">
               <h2 className="bookshelf-title">{this.props.name}</h2>
               {
                 this.props.books.map(book => {
@@ -22,10 +22,10 @@ class Shelf extends Component {
                                />
                 })
               }
-            </div>
+            </section>
           </div>
         </ol>
-      </div>
+      </section>
     );
   }
 }
