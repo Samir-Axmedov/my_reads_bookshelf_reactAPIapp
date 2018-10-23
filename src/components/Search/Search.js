@@ -71,17 +71,11 @@ class Search extends Component {
   render() {
     console.log(this.state.myBookShelves);
     return (
-<<<<<<< HEAD
+
       <main className="search-books">
         <section className="search-books-bar">
           <Link to="/" className="close-search">Close</Link>
           <header className="search-books-input-wrapper">
-=======
-      <div className="search-books">
-        <div className="search-books-bar">
-          <Link to="/" className="close-search">Close</Link>
-          <div className="search-books-input-wrapper">
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
               You can find these search terms here:
@@ -95,18 +89,10 @@ class Search extends Component {
               type="text"
               placeholder="Search by title or author"
             />
-
-<<<<<<< HEAD
           </header>
         </section>
 
         <section className="search-books-results">
-=======
-          </div>
-        </div>
-
-        <div className="search-books-results">
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
           <ol className="books-grid">
             {
               this.state.results && this.state.results.map(book => {
@@ -117,13 +103,8 @@ class Search extends Component {
               })
             }
           </ol>
-<<<<<<< HEAD
         </section>
       </main>
-=======
-        </div>
-      </div>
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
     );
   }
 }

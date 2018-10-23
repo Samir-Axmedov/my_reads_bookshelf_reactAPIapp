@@ -33,21 +33,6 @@ class Library extends Component {
     });
   }
 
-<<<<<<< HEAD
-=======
-
-  // updateBook = (bookIDFromMenu, shelfName) => {
-  //   let bookToUpdate = this.state.myBookShelves.filter(book => book.id === bookIDFromMenu);
-  //   BooksAPI.update(bookToUpdate[0], shelfName).
-  //   then(resp => {
-  //     bookToUpdate[0].shelf = shelfName;
-  //     this.setState(state => ({
-  //       myBookShelves: state.myBookShelves.filter(book => book.id !== bookToUpdate[0].id).concat([bookToUpdate[0]])
-  //     }));
-  //   });
-  // }
-
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
   updatePage = () => {
     BooksAPI.getAll().then(books => {
       console.log("updatePage called");
@@ -59,11 +44,7 @@ class Library extends Component {
     return (
       <div className="list-books">
         <Header bookShelf={"My BookShelf"} />
-<<<<<<< HEAD
         <main className="list-books-content">
-=======
-        <div className="list-books-content">
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
           <Shelf
             books={this.state.myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
@@ -79,11 +60,8 @@ class Library extends Component {
             name={"Read"}
             updateBook={this.updateBook}
           />
-<<<<<<< HEAD
+
           </main>
-=======
-          </div>
->>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
         <SearchIcon />
       </div>
     );
