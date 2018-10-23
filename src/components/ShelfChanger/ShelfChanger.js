@@ -10,7 +10,11 @@ class ShelfChanger extends Component {
 
   render() {
     return (
+<<<<<<< HEAD
       <section className="book-shelf-changer">
+=======
+      <div className="book-shelf-changer">
+>>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
         <select value={this.props.currentShelf || "none"}
                 id={this.props.bookMenuID}
                 onChange={this.handleShelfSelect}>
@@ -20,7 +24,11 @@ class ShelfChanger extends Component {
           <option value="read">Read</option>
           <option value="none">None</option>
         </select>
+<<<<<<< HEAD
       </section>
+=======
+      </div>
+>>>>>>> 755e18fdfbe799978bab4d35d29e563dfc27eb3c
     );
   }
 }
