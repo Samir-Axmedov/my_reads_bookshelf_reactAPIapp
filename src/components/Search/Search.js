@@ -110,7 +110,9 @@ class Search extends Component {
 }
 
 Search.propTypes = {
+  results: PropTypes.array,
   handleSearchTerm: PropTypes.func,
+  searchTerm: PropTypes.string,
   searchBooks: PropTypes.func,
   updateBook: PropTypes.func,
 }

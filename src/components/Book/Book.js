@@ -1,11 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Book.css';
 import ShelfChanger from '../ShelfChanger/ShelfChanger';
 
-class Book extends Component {
-
-  render() {
+const Book = (props) => {
     return (
           <li>
             <section className="book">
@@ -15,26 +13,26 @@ class Book extends Component {
                     width: 128,
                     height: 193,
                     backgroundImage: `url(${
-                      !this.props.book.imageLinks ? ''
+                      !props.book.imageLinks ? ''
                       :
-                      (this.props.book.imageLinks.thumbnail || this.props.book.imageLinks.smallThumbnail)
+                      (props.book.imageLinks.thumbnail || props.book.imageLinks.smallThumbnail)
                     })`
                   }}>
                 </div>
 
-                <ShelfChanger currentShelf={this.props.book.shelf}
-                              bookMenuID={this.props.book.id}
-                              updateBook={this.props.updateBook}
+                <ShelfChanger currentShelf={props.book.shelf}
+                              bookMenuID={props.book.id}
+                              updateBook={props.updateBook}
                               />
-
               </div>
-              <div className="book-title">{this.props.book.title}</div>
-              <div className="book-authors">{this.props.book.authors}</div>
+
+              <div className="book-title">{props.book.title}</div>
+              <div className="book-authors">{props.book.authors}</div>
             </section>
           </li>
     );
   }
-}
+
 
 Book.propTypes = {
   book: PropTypes.object,

@@ -1,10 +1,17 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './Header.css';
 
-export const Header = (props) => {
+const Header = (props) => {
     return (
       <div className="list-books-title">
         <h1>{props.bookShelf}</h1>
       </div>
     );
 }
+
+Header.propTypes = {
+  bookShelf: PropTypes.string
+}
+
+export default Header;

@@ -1,23 +1,21 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './Shelf.css';
 import Book from '../Book/Book';
 
 
-class Shelf extends Component {
-
-  render() {
+const Shelf = (props) => {
     return (
       <section className="bookshelf-books">
         <ol className="books-grid">
           <div>
             <section className="bookshelf">
-              <h2 className="bookshelf-title">{this.props.name}</h2>
+              <h2 className="bookshelf-title">{props.name}</h2>
               {
-                this.props.books.map(book => {
+                props.books.map(book => {
                   return <Book book={book}
                                key={book.id}
-                               updateBook={this.props.updateBook}
+                               updateBook={props.updateBook}
                                />
                 })
               }
@@ -27,10 +25,9 @@ class Shelf extends Component {
       </section>
     );
   }
-}
 
 Shelf.propTypes = {
-  currentReads: PropTypes.array,
+  books: PropTypes.array,
   name: PropTypes.string,
   updateBook: PropTypes.func
 }

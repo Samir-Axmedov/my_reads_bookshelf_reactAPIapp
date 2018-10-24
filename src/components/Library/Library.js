@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import * as BooksAPI from '../../BooksAPI';
 import './Library.css';
-import { Header } from '../Header/Header';
+import Header from '../Header/Header';
 import Shelf from '../Shelf/Shelf';
 import SearchIcon from '../SearchIcon/SearchIcon';
 
@@ -69,8 +69,8 @@ class Library extends Component {
 }
 
 Library.propTypes = {
+  myBookShelves: PropTypes.array,
   updateBook: PropTypes.func,
-  bookShelf: PropTypes.string,
 }
 
 export default Library;

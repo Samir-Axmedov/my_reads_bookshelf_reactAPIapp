@@ -1,20 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import './ShelfChanger.css';
 
-class ShelfChanger extends Component {
-
-  handleShelfSelect = (event) => {
-    this.props.updateBook(event.target.id, event.target.value)
-  }
-
-  render() {
+const ShelfChanger = (props) => {
     return (
-
       <section className="book-shelf-changer">
-        <select value={this.props.currentShelf || "none"}
-                id={this.props.bookMenuID}
-                onChange={this.handleShelfSelect}>
+        <select value={props.currentShelf || "none"}
+                id={props.bookMenuID}
+                onChange={(e) => props.updateBook(e.target.id, e.target.value)}>
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>
@@ -24,8 +17,6 @@ class ShelfChanger extends Component {
       </section>
     );
   }
-}
-
 
 ShelfChanger.propTypes = {
   currentShelf: PropTypes.string,
