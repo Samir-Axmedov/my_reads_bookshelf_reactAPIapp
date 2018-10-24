@@ -6,10 +6,10 @@ import Library from '../Library/Library';
 
 const BooksApp = () => {
   return (
-    <main className="app">
+    <div className="app">
       <Route exact path="/" component={ Library } />
       <Route exact path="/search" component={ Search } />
-    </main>
+    </div>
   )
 }
 

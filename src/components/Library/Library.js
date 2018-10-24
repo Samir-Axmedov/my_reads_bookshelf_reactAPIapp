@@ -41,22 +41,23 @@ class Library extends Component {
   }
 
   render() {
+    const { myBookShelves } = this.state;
     return (
       <div className="list-books">
         <Header bookShelf={"My BookShelf"} />
         <main className="list-books-content">
           <Shelf
-            books={this.state.myBookShelves.filter(book => book.shelf === "currentlyReading")}
+            books={myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}
             updateBook={this.updateBook}
           />
           <Shelf
-            books={this.state.myBookShelves.filter(book => book.shelf === "wantToRead")}
+            books={myBookShelves.filter(book => book.shelf === "wantToRead")}
             name={"Want To Read"}
             updateBook={this.updateBook}
           />
           <Shelf
-            books={this.state.myBookShelves.filter(book => book.shelf === "read")}
+            books={myBookShelves.filter(book => book.shelf === "read")}
             name={"Read"}
             updateBook={this.updateBook}
           />

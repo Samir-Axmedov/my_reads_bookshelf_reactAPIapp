@@ -70,8 +70,8 @@ class Search extends Component {
 
   render() {
     console.log(this.state.myBookShelves);
+    const { results, searchTerm } = this.state;
     return (
-
       <main className="search-books">
         <section className="search-books-bar">
           <Link to="/" className="close-search">Close</Link>
@@ -85,7 +85,7 @@ class Search extends Component {
               you don't find a specific author or title. Every search is limited by search terms.
             */}
             <input onChange={this.handleSearchTerm}
-              value={this.state.searchTerm}
+              value={searchTerm}
               type="text"
               placeholder="Search by title or author"
             />
@@ -95,7 +95,7 @@ class Search extends Component {
         <section className="search-books-results">
           <ol className="books-grid">
             {
-              this.state.results && this.state.results.map(book => {
+              results && results.map(book => {
                 return <Book book={book}
                              key={book.id}
                              updateBook={this.updateBook}

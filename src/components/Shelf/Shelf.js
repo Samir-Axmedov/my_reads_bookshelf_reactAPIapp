@@ -4,23 +4,21 @@ import './Shelf.css';
 import Book from '../Book/Book';
 
 
-const Shelf = (props) => {
+const Shelf = ({ name, books, updateBook }) => {
     return (
       <section className="bookshelf-books">
         <ol className="books-grid">
-          <div>
             <section className="bookshelf">
-              <h2 className="bookshelf-title">{props.name}</h2>
+              <h2 className="bookshelf-title">{name}</h2>
               {
-                props.books.map(book => {
+                books.map(book => {
                   return <Book book={book}
                                key={book.id}
-                               updateBook={props.updateBook}
+                               updateBook={updateBook}
                                />
                 })
               }
             </section>
-          </div>
         </ol>
       </section>
     );

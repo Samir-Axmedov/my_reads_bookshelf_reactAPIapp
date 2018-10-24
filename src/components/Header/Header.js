@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
 
-const Header = (props) => {
+const Header = ({ bookShelf }) => {
     return (
       <div className="list-books-title">
-        <h1>{props.bookShelf}</h1>
+        <h1>{bookShelf}</h1>
       </div>
     );
 }
