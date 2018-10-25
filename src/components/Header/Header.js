@@ -5,7 +5,7 @@ import './Header.css';
 const Header = ({ bookShelf }) => {
     return (
       <div className="list-books-title">
-        <h1>{bookShelf}</h1>
+        <h1 tabIndex="0">{bookShelf}</h1>
       </div>
     );
 }

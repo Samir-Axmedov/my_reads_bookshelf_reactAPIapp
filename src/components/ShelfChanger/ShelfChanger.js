@@ -4,10 +4,11 @@ import './ShelfChanger.css';
 
 const ShelfChanger = ({ currentShelf, bookMenuID, updateBook }) => {
     return (
-      <section className="book-shelf-changer">
+      <section className="book-shelf-changer" >
         <select value={currentShelf || "none"}
                 id={bookMenuID}
-                onChange={(e) => updateBook(e.target.id, e.target.value)}>
+                onChange={(e) => updateBook(e.target.id, e.target.value)}
+                aria-label="Menu to move this book to a new bookshelf">
           <option value="move" disabled>Move to...</option>
           <option value="currentlyReading">Currently Reading</option>
           <option value="wantToRead">Want to Read</option>

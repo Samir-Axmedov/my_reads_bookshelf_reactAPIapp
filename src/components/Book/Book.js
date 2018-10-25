@@ -6,7 +6,7 @@ import ShelfChanger from '../ShelfChanger/ShelfChanger';
 const Book = ({ book, updateBook }) => {
     return (
           <li>
-            <section className="book">
+            <section className="book" tabIndex="0">
               <div className="book-top">
                 <div className="book-cover"
                   style={{

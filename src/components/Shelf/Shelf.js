@@ -9,7 +9,7 @@ const Shelf = ({ name, books, updateBook }) => {
       <section className="bookshelf-books">
         <ol className="books-grid">
             <section className="bookshelf">
-              <h2 className="bookshelf-title">{name}</h2>
+              <h2 className="bookshelf-title" tabIndex="0">{name}</h2>
               {
                 books.map(book => {
                   return <Book book={book}

@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const SearchIcon = () => {
   return (
     <section className="open-search">
-      <Link to="/search">Add a book</Link>
+      <Link to="/search">icon to search for books</Link>
     </section>
   );
 }

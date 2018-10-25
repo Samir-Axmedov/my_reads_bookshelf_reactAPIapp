@@ -6,7 +6,7 @@ import Library from '../Library/Library';
 
 const BooksApp = () => {
   return (
-    <div className="app">
+    <div className="app" role="application">
       <Route exact path="/" component={ Library } />
       <Route exact path="/search" component={ Search } />
     </div>

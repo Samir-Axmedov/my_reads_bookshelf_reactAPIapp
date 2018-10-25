@@ -45,7 +45,7 @@ class Library extends Component {
     return (
       <div className="list-books">
         <Header bookShelf={"My BookShelf"} />
-        <main className="list-books-content">
+        <main className="list-books-content" role="main">
           <Shelf
             books={myBookShelves.filter(book => book.shelf === "currentlyReading")}
             name={"Currently Reading"}

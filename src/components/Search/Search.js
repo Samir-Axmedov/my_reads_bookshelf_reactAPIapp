@@ -73,8 +73,8 @@ class Search extends Component {
     const { results, searchTerm } = this.state;
     return (
       <main className="search-books">
-        <section className="search-books-bar">
-          <Link to="/" className="close-search">Close</Link>
+        <section className="search-books-bar" aria-label="search bar to find new books">
+          <Link to="/" className="close-search">Icon to return to bookshelves</Link>
           <header className="search-books-input-wrapper">
             {/*
               NOTES: The search from BooksAPI is limited to a particular set of search terms.
@@ -84,11 +84,15 @@ class Search extends Component {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-            <input onChange={this.handleSearchTerm}
-              value={searchTerm}
-              type="text"
-              placeholder="Search by title or author"
-            />
+            <label htmlFor="input field">
+              <input onChange={this.handleSearchTerm}
+                id="input field"
+                role="searchbox"
+                value={searchTerm}
+                type="text"
+                placeholder="Search by title or author"
+              />
+            </label>
           </header>
         </section>
 
